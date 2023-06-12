@@ -255,6 +255,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\jmmon\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-gitgutter"] = {
+    loaded = true,
+    path = "C:\\Users\\jmmon\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-gitgutter",
+    url = "https://github.com/airblade/vim-gitgutter"
+  },
   ["vim-illuminate"] = {
     loaded = true,
     path = "C:\\Users\\jmmon\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-illuminate",

@@ -4,7 +4,7 @@ local options = {
   --signcolumn = "yes", -- show column for sign ?? for git, diagnostics, etc
   --signcolumn = "number", -- show sign instead of the numbert
   --signcolumn = "yes:1", -- not sure what this does!
-  signcolumn = "no",
+  signcolumn = "yes",
 
   -- cursorline and col will slow down rendering when scrolling!
   cursorline = true, -- highlight line the cursor is on 

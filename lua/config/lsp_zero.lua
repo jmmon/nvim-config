@@ -182,7 +182,8 @@ local signs = {
 for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, {
     -- define the signs for diagnostics
-    text = sign.text,
+    --text = sign.text,
+    text = "",
     texthl = sign.name, -- highlight the text causing the error
     numhl = sign.name, -- highlight the linenumber causing the error
     linehl = sign.linehl,
