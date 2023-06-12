@@ -180,9 +180,7 @@ return packer.startup(function(use)
   use { "preservim/nerdcommenter" }
 
   -- git gutter, some git controls
-  --use { "airblade/vim-gitgutter" }
-  -- git fugitive - easy git commands
-  --use { "tpope/vim-fugitive" }
+  use { "airblade/vim-gitgutter" }
 
 
   -- lualine buffers and tabs
