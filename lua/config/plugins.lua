@@ -66,6 +66,10 @@ return packer.startup(function(use)
   -- syntax highlighting
   use {
     "nvim-treesitter/nvim-treesitter",
+    --below,  for use with Comment.nvim
+    requires = {
+      "JoosepAlviste/nvim-ts-context-commentstring"
+    }
     --run = ":TSUpdate",
   }
   use { "nvim-treesitter/nvim-treesitter-context" }
@@ -174,7 +178,11 @@ return packer.startup(function(use)
   -- <leader>cs===fancy comment;
   -- <leader>c+space===toggle line comment;
   -- <leader>cc===comment a line or block
-  use { "preservim/nerdcommenter" }
+  --use { "preservim/nerdcommenter" }
+
+  -- new commenter: gcc, gcO, gco, gcA, gbc (blockwise comment)
+  use { "numToStr/Comment.nvim" }
+
 
   -- git gutter, some git controls
   --use { "airblade/vim-gitgutter" }
@@ -202,6 +210,7 @@ return packer.startup(function(use)
   --
   --use "catppuccin/nvim"
   use "olimorris/onedarkpro.nvim" -- pretty nice!
+  use "gnmearacaun/onedarkcomment.nvim" -- onedark with brighter comments
 
   -- dracula themes
   --use "dracula/vim" -- brighter than onedarkpro and pretty nice

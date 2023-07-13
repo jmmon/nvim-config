@@ -51,12 +51,24 @@ configs.setup {
     --"vim",
     ----"comment",
   --},
+  --ensure_installed = {
+    --"javascript",
+    --"typescript",
+    --"tsx",
+    --"css",
+    --"vim",
+  --},
   ensure_installed = {
-    "javascript",
-    "typescript",
-    "tsx",
-    "css",
-    "vim",
+    'astro', 'css', 'glimmer', 'graphql', 
+    -- 'handlebars', 
+    'html', 'javascript',
+    'lua', 'nix', 'php', 'python', 
+    -- 'rescript', 
+    'scss', 'svelte', 'tsx', 'twig',
+    'typescript', 'vim', 'vue',
+  },
+  context_commentstring = {
+    enable = true,
   },
   --ignore_install = {
     --""

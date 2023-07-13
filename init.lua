@@ -33,6 +33,8 @@ require "config.toggleterm"
 require "config.illuminate" -- highlight occurrances
 require "config.autopairs" -- might cause cmp suggestions to break!
 
+require "config.comment" -- comment.nvim config
+
 --require "config.indent-blankline" -- indent colors
 --require "config.transparent" -- bg
 
