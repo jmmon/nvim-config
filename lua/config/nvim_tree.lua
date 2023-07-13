@@ -14,6 +14,7 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 vim.cmd [[  autocmd VimEnter * :hi NvimTreeOpenedFile gui=bold guifg=#ffd7ff ctermfg=225 guibg=#080808 ctermbg=232 term=bold cterm=bold ]] -- bold text
 
+        --*nvim-tree.actions.open_file.quit_on_open*
 nvim_tree.setup {
   modified = {
     enable = true,
@@ -23,7 +24,7 @@ nvim_tree.setup {
   git = {
     enable = true,
     ignore = false,
-    timeout = 400,
+    timeout = 200,
   },
   update_focused_file = {
     enable = true,
@@ -65,13 +66,13 @@ nvim_tree.setup {
           ignored = "◌",
         },
         --git = {
-          --unstaged = "+",
-          --staged = "S",
-          --unmerged = "*",
-          --renamed = "R",
-          --untracked = "U",
-          --deleted = "-",
-          --ignored = "#",
+        --unstaged = "+",
+        --staged = "S",
+        --unmerged = "*",
+        --renamed = "R",
+        --untracked = "U",
+        --deleted = "-",
+        --ignored = "#",
         --},
       },
     },
@@ -80,10 +81,10 @@ nvim_tree.setup {
     enable = true,
     show_on_dirs = true,
     debounce_delay = 150,
-    --severity = {
-      --min = vim.diagnostic.severity.HINT,
-      --max = vim.diagnostic.severity.ERROR,
-    --},
+    severity = {
+    min = vim.diagnostic.severity.INFO,
+    max = vim.diagnostic.severity.ERROR,
+    },
     icons = {
       --hint = "#",
       --info = "?",
@@ -112,6 +113,7 @@ nvim_tree.setup {
         { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" }, -- open/edit the file
         { key = "h",                  cb = tree_cb "close_node" },
         { key = "v",                  cb = tree_cb "vsplit" },
+        { key = "<C-v>",                  cb = tree_cb "split" },
         { key = "[d",                 cb = tree_cb "prev_diag_item" },
         { key = "]d",                 cb = tree_cb "next_diag_item" },
         { key = "[g",                 cb = tree_cb "prev_git_item" },
@@ -122,8 +124,8 @@ nvim_tree.setup {
   filters = {
     dotfiles = false,
     --custom = {
-      --"^.*.log",
-      --"^.*.txt",
+    --"^.*.log",
+    --"^.*.txt",
     --}
   },
 }

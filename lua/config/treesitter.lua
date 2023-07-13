@@ -37,33 +37,40 @@ configs.setup {
   autopairs = {
     enable = true,
   },
+  --ensure_installed = {
+    ----"lua",
+    ----"markdown",
+    ----"markdown_inline",
+    ----"bash",
+    ----"python",
+    --"javascript",
+    --"typescript",
+    --"tsx",
+    ----"html",
+    --"css",
+    --"vim",
+    ----"comment",
+  --},
   ensure_installed = {
-    --"lua",
-    --"markdown",
-    --"markdown_inline",
-    --"bash",
-    --"python",
     "javascript",
     "typescript",
     "tsx",
-    --"html",
     "css",
     "vim",
-    "comment",
   },
-  ignore_install = {
-    ""
-  },
+  --ignore_install = {
+    --""
+  --},
   sync_install = false,
-  auto_install = false,
+  auto_install = true,
   highlight = {
     --enable = true,
     enable = false,
     additional_vim_regex_highlighting = false,
-    disable = {
-    --"css"
-      --"html"
-    },
+    --disable = {
+    ----"css"
+      ----"html"
+    --},
   },
   indent = {
     enable = true,

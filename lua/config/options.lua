@@ -14,8 +14,9 @@ local options = {
   -- improve some drawing/redrawing:
   lazyredraw = true, -- should help with laggy scrolling
 
+  --syntax = "on",
   syntax = "off",
-  synmaxcol = 500, -- stop syntax highlighting after N columns
+  --synmaxcol = 500, -- stop syntax highlighting after N columns
   -- redraw - when over this limit, syntax is DISABLED until Ctrl-L is pressed
   --redrawtime = 10000, -- ms - default 2000ms - if redraw takes longer than this, skip redraw
   redrawtime = 5000,
@@ -37,8 +38,8 @@ local options = {
 
   -- tabs, indenting
   tabstop = 2, -- tab space value when reading a file
+  shiftwidth = 0, -- if 0, uses value of 'tabstop'
   softtabstop = -1, -- if negative, uses 'shiftwidth' (which can use 'tabstop')
-  shiftwidth = 2, -- if 0, uses value of 'tabstop'
   -- Then you ONLY need to set tabstop!
   expandtab = true, -- use spaces instead of tabs
 
@@ -91,9 +92,10 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles")
 -- tweaking syntax highlighting
 -- maxlines === most lines to look back to find start of a comment
 -- minlines === minimum lines to look back to find start of a comment
-vim.cmd [[ autocmd VimEnter * :syn sync fromstart ]] -- most accurate but slowest form of highlighting
-vim.cmd [[ autocmd BufEnter * :syn sync maxlines=120 ]] -- limit number of lines to scan for syntax highlighting
-vim.cmd [[ autocmd VimEnter * :syn sync minlines=60 ]] -- limit number of lines to scan for syntax highlighting
+-- fromstart (of file), ccomment (from end of above comment), third (count back minlines), fourth (sync starting on end of specific regions)
+--vim.cmd [[ autocmd VimEnter * :syn sync fromstart ]] -- most accurate but slowest form of highlighting
+--vim.cmd [[ autocmd BufEnter * :syn sync maxlines=120 ]] -- limit number of lines to scan for syntax highlighting
+--vim.cmd [[ autocmd VimEnter * :syn sync minlines=60 ]] -- limit number of lines to scan for syntax highlighting
 
 
 -- make cursor line only underline instead of highlight
@@ -101,6 +103,10 @@ vim.cmd [[ autocmd VimEnter * :hi clear CursorLine ]]
 vim.cmd [[ autocmd VimEnter * :hi CursorLine  cterm=underline gui=underline guibg=#111111 ]]
 --vim.cmd [[ autocmd VimEnter * :hi CursorLine  cterm=underline ctermfg=000000 gui=underline guifg=#000000 guibg=#111111 ]]
 
-
+-- line number && cursor line highlights
 vim.cmd [[ autocmd VimEnter * :hi LineNr guifg=#777777 ]]
 vim.cmd [[ autocmd VimEnter * :hi CursorLineNr guifg=#F55FFE guibg=#444444 ]]
+
+
+-- treesitter context - bottom row highlight, acting as a separator
+vim.cmd [[ autocmd VimEnter * :hi TreesitterContextBottom gui=underline guisp=Grey ]]

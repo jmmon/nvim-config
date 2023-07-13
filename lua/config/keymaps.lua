@@ -54,9 +54,14 @@ keymap("n", "<S-l>", ":bnext<cr>", opts)
 keymap("n", "<S-h>", ":bprevious<cr>", opts)
 
 -- delete this buffer - doesn't work??
-keymap("n", "<C-S-w>q", "<cmd>bprevious<bar>bdelete#<cr>", opts)
+keymap("n", "<leader>bd", "<cmd>bprevious<bar>bdelete#<CR><CR>", opts)
 -- close all other buffers
-keymap("n", "<C-S-w>qa", "<cmd>%bd<bar>e<cr>", opts)
+keymap("n", "<leader>bda", "<cmd>%bd<bar>e<CR><CR>", opts)
+keymap("n", "<leader>bdf", "<cmd>bdfirst<CR>", opts)
+keymap("n", "<leader>bdl", "<cmd>bdlast<CR>", opts)
+
+-- marks?
+keymap("n", "<leader>mda", "<cmd>delm a<CR>", opts)
 
 -- clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<cr>", opts)
@@ -101,6 +106,7 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<cr>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<cr>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<cr>", opts)
+keymap("n", "<leader>fd", ":Telescope diagnostics<cr>", opts)
 
 -- lsp format!
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)

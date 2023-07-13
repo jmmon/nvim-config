@@ -3,8 +3,6 @@ if not  icons_status_ok then
   return
 end
 
-
-
 icons.setup {
  override_by_extension = {
   ["log"] = {
@@ -19,17 +17,26 @@ icons.setup {
     color = "#F0F8FF",
     name = "Text"
   },
+
   ["svg"] = {
     --icon = "",
     icon = "",
     color = "#4444FF",
     name = "SVG"
   },
+
   ["xml"] = {
     --icon = "",
     icon = "",
     color = "#FFA500",
     name = "XML"
-  }
+  },
+  ["sol"] = {
+    --icon = "",
+    --icon = "",
+    icon = "",
+    color = "#9988aa",
+    name = "Solidity"
+  },
  };
 }

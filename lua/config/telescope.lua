@@ -15,9 +15,25 @@ telescope.setup {
         preview_cutoff = 0,
       }
     },
+
+    --vertical = {
+      --height = 0.9,
+      --preview_cutoff = 40,
+      --prompt_position = "bottom",
+      --width = 0.8,
+    --},
+    --horizontal = {
+      --height = 0.9,
+      --preview_cutoff = 120,
+      --prompt_position = "bottom",
+      --width = 0.8,
+    --}
   },
   defaults = {
-    layout_strategy = "flex",
+    layout_strategy = "vertical",
+    --cycle_layout_list = {
+      --"horizontal", "vertical", "flex",
+    --},
     --horizontal = {
       --layout_config = {
         --preview_cutoff = 101,
@@ -40,6 +56,8 @@ telescope.setup {
         ["<Up>"] = actions.cycle_history_prev,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+        --["<C-n>"] = telescope.actions.layout.cycle_layout_next,
+        --["<C-p>"] = telescope.actions.layout.cycle_layout_prev,
       },
     },
   },

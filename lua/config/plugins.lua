@@ -1,9 +1,7 @@
-local fn = vim.fn
-
 -- automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path, }
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = vim.fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path, }
   print "Installing packer close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
 end
@@ -70,7 +68,6 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     --run = ":TSUpdate",
   }
-
   use { "nvim-treesitter/nvim-treesitter-context" }
 
 
@@ -180,7 +177,10 @@ return packer.startup(function(use)
   use { "preservim/nerdcommenter" }
 
   -- git gutter, some git controls
-  use { "airblade/vim-gitgutter" }
+  --use { "airblade/vim-gitgutter" }
+
+  -- shows marks in the gutter (mm, 'm)
+  use { "kshenoy/vim-signature" }
 
 
   -- lualine buffers and tabs
@@ -230,7 +230,6 @@ return packer.startup(function(use)
   -- create an undo tree for easy changing and undoing 
   use "mbbill/undotree"
 
-  --use "jackMort/ChatGPT.nvim"
 
   -- js extra syntax?
   --use { "pangloss/vim-javascript" }
@@ -244,12 +243,16 @@ return packer.startup(function(use)
    ]]
   -- extra highlighting syntax -- not needed? Treesitter should handle it, use this if needing specific languages
   --use "sheerun/vim-polyglot"
+
+  -- AI co-pilot
   use {
     "Exafunction/codeium.vim",
     config = function ()
       vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, {expr = true})
     end
   }
+
+  --use "jackMort/ChatGPT.nvim"
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()
