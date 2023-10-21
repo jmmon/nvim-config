@@ -37,14 +37,14 @@ nvim_tree.setup {
   },
 
   renderer = {
-    add_trailing = true,
+    add_trailing = true, -- slash to folder names
     highlight_opened_files = 'all',
     group_empty = true,
     indent_width = 2, -- default: 2
     -- indent markers: add symbols before file names found inside folders
     indent_markers = {
       enable = false,
-      inline_arrows = true,
+      inline_arrows = true, -- show folder arrow (if enabled) in same col as indent_markers
       icons = {
         corner = "└",
         edge = "",
@@ -67,8 +67,10 @@ nvim_tree.setup {
     icons = {
       git_placement = "after", --  "after"|"before"|"signcolumn"
       modified_placement = "after",
-      diagnostics_placement = "signcolumn",
       padding = " ", -- inserted between icon and filename
+show = {
+  folder_arrow = false, -- show small arrow before folder node
+},
       glyphs = {
         --default = "~",
         default = "",
