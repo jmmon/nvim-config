@@ -46,7 +46,7 @@ onedarkcomment.setup({
 -- ]]
 
 
-
+--[[
 -- customize settings, placed BEFORE colorscheme selection:
 local globals = {
 }
@@ -55,11 +55,12 @@ local globals = {
 for k, v in pairs(globals) do
   vim.g[k] = v
 end
-
+]]
 
 
 -- good themes
-local colorscheme = "onedark_vivid" -- dark pro theme -- okay, pretty vivid
+-- local colorscheme = "onedark_vivid" -- dark pro theme -- okay, pretty vivid
+-- local colorscheme = "onelight" -- or onedark or onelight
 -- local colorscheme = "onedarkcomment"
 -- local colorscheme = 'onedarkhc'
 
@@ -68,7 +69,7 @@ local colorscheme = "onedark_vivid" -- dark pro theme -- okay, pretty vivid
 -- default theme, pretty good, has italics
 --local colorscheme =  "catppuccin-mocha" -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
---local colorscheme = "dracula"
+local colorscheme = "dracula"
 --local colorscheme = "molokai" -- not bad, heavy orange, darker
 
 --local colorscheme = 'pop-punk' -- okay, pretty bright contrast
@@ -82,7 +83,7 @@ local colorscheme = "onedark_vivid" -- dark pro theme -- okay, pretty vivid
 --local colorscheme = "snazzybuddy"
 --local colorscheme = "one"
 
-local status_ok, _ = pcall(vim.cmd.colorscheme, colorscheme)
-if not status_ok then
+local status_ok_cs, _ = pcall(vim.cmd.colorscheme, colorscheme)
+if not status_ok_cs then
   return
 end

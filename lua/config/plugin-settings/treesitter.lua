@@ -20,7 +20,47 @@ end
 
 -- what does this do? highlighting! syntax highlighting
 configs.setup {
-  rainbow = { -- enable ts-rainbow parenthesis
+  --ensure_installed = {
+    ----"markdown",
+    ----"markdown_inline",
+    ----"bash",
+    ----"comment",
+  --},
+  ensure_installed = {
+    'astro', 'css', 'glimmer', 'graphql',
+    -- 'handlebars', 
+    -- 'hbs',
+    'html', 'javascript', 'typescript',
+    'lua', 'nix', 'php', 'python',
+    -- 'rescript', 
+    'scss', 'svelte', 'tsx', 'twig',
+    'vim', 'vue',
+  },
+  --ignore_install = {
+    --""
+  --},
+  sync_install = false,
+  auto_install = true,
+  highlight = {
+    -- enable = true,
+    enable = false,
+    additional_vim_regex_highlighting = false,
+    --disable = {
+      ----"css"
+      ----"html"
+    --},
+  },
+
+  indent = {
+    enable = true,
+    disable = {
+      -- "python",
+      --"css"
+    }
+  },
+
+  -- enable ts-rainbow parenthesis
+  rainbow = {
     enable = true,
     -- list of langs to disable
     --disable = { "jsx", "cpp" },
@@ -29,66 +69,16 @@ configs.setup {
     -- highlight entire buffer all at once
     strategy = require 'ts-rainbow.strategy.global',
   },
-  -- use autotag (html auto closing tag)
+  -- use nvim-ts-autotag (html auto closing tag)
   autotag = {
     enable = true,
   },
   -- auto close pairs of parenthesis etc
-  autopairs = {
-    enable = true,
-  },
-  --ensure_installed = {
-    ----"lua",
-    ----"markdown",
-    ----"markdown_inline",
-    ----"bash",
-    ----"python",
-    --"javascript",
-    --"typescript",
-    --"tsx",
-    ----"html",
-    --"css",
-    --"vim",
-    ----"comment",
-  --},
-  --ensure_installed = {
-    --"javascript",
-    --"typescript",
-    --"tsx",
-    --"css",
-    --"vim",
-  --},
-  ensure_installed = {
-    'astro', 'css', 'glimmer', 'graphql', 
-    -- 'handlebars', 
-    'html', 'javascript',
-    'lua', 'nix', 'php', 'python', 
-    -- 'rescript', 
-    'scss', 'svelte', 'tsx', 'twig',
-    'typescript', 'vim', 'vue',
-  },
+  -- autopairs = {
+  --   enable = true,
+  -- },
+  -- nvim-ts-context-commentstring - for help with files with multiple languages
   context_commentstring = {
     enable = true,
-  },
-  --ignore_install = {
-    --""
-  --},
-  sync_install = false,
-  auto_install = true,
-  highlight = {
-    --enable = true,
-    enable = false,
-    additional_vim_regex_highlighting = false,
-    --disable = {
-    ----"css"
-      ----"html"
-    --},
-  },
-  indent = {
-    enable = true,
-    disable = {
-      "python",
-      --"css"
-    }
   },
 }

@@ -1,7 +1,8 @@
 -- automatically install packer
 local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = vim.fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path, }
+  PACKER_BOOTSTRAP = vim.fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim",
+    install_path, }
   print "Installing packer close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
 end
@@ -45,6 +46,12 @@ return packer.startup(function(use)
   -- used for space+f+f and space+f+t search windows
   use { "nvim-telescope/telescope.nvim" }
 
+  -- use {'junegunn/fzf' }
+  -- use {
+  --   'ibhagwan/fzf-lua',
+  --   requires = { "nvim-tree/nvim-web-devicons" }
+  -- }
+
   -- file browser <leader> + e
   use {
     "nvim-tree/nvim-tree.lua",
@@ -56,110 +63,122 @@ return packer.startup(function(use)
 
   -- :MarkdownPreview command is available
   --use({
-    --"iamcco/markdown-preview.nvim",
-    --run = function() vim.fn["mkdp#util#install"]() end,
+  --"iamcco/markdown-preview.nvim",
+  --run = function() vim.fn["mkdp#util#install"]() end,
   --})
 
-   --enable HTML close/change tag names with treesitter
-  use { "windwp/nvim-ts-autotag" }
+  --enable HTML close/change tag names with treesitter
+  -- use { "windwp/nvim-ts-autotag" }
+
+  -- auto pairs e.g. "" {} []
+  -- use { "jiangmiao/auto-pairs" }
 
   -- syntax highlighting
   use {
     "nvim-treesitter/nvim-treesitter",
     --below,  for use with Comment.nvim
     requires = {
-      "JoosepAlviste/nvim-ts-context-commentstring"
+      -- enable better commenting for files with multiple languages (svelte)
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      --    --enable HTML close/change tag names with treesitter
+      "windwp/nvim-ts-autotag",
+      -- auto pairs e.g. "" {} []
+      -- "jiangmiao/auto-pairs",
     }
     --run = ":TSUpdate",
   }
   use { "nvim-treesitter/nvim-treesitter-context" }
 
 
+  -- use 'wfxr/minimap.vim'
 
   -- supposed to show console.logs in floating text, to see values of variables
   --use { "metakirby5/codi.vim" }
 
   -- cmp lsp plugins (old lsp)
 
-     --use { "hrsh7th/nvim-cmp" }  --completion plugin
-     --use { "hrsh7th/cmp-nvim-lsp" } -- 
-     --use { "hrsh7th/cmp-nvim-lua" } -- 
-     --use { "hrsh7th/cmp-buffer" }  -- buffer completions?
-     --use { "hrsh7th/cmp-path" } --   path completions
-     --use { "hrsh7th/cmp-cmdline" } --   command line completions
-     --use { "saadparwaiz1/cmp_luasnip" } --   snippet completions
+  --use { "hrsh7th/nvim-cmp" }  --completion plugin
+  --use { "hrsh7th/cmp-nvim-lsp" } --
+  --use { "hrsh7th/cmp-nvim-lua" } --
+  --use { "hrsh7th/cmp-buffer" }  -- buffer completions?
+  --use { "hrsh7th/cmp-path" } --   path completions
+  --use { "hrsh7th/cmp-cmdline" } --   command line completions
+  --use { "saadparwaiz1/cmp_luasnip" } --   snippet completions
 
 
-     --use { "L3MON4D3/LuaSnip" } --   snippet engine
-     --use { "rafamadriz/friendly-snippets" } --   a bunch of snippets to use
+  --use { "L3MON4D3/LuaSnip" } --   snippet engine
+  --use { "rafamadriz/friendly-snippets" } --   a bunch of snippets to use
 
-     --use { "neovim/nvim-lspconfig" } -- 
-     --use { "williamboman/mason.nvim" } -- 
-     --use { "williamboman/mason-lspconfig.nvim" } -- 
+  --use { "neovim/nvim-lspconfig" } --
+  --use { "williamboman/mason.nvim" } --
+  --use { "williamboman/mason-lspconfig.nvim" } --
 
 
-   -- new lsp config
-   use {
+  -- new lsp config
+  use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},             -- Required
+      { 'neovim/nvim-lspconfig' }, -- Required
       {
         'williamboman/mason.nvim',
         run = function()
           pcall(vim.cmd, 'MasonUpdate')
         end,
-        },                                   -- Optional
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      },                                     -- Optional
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},         -- Required
-      {'hrsh7th/cmp-nvim-lsp'},     -- Required
-     { "hrsh7th/cmp-nvim-lua" }, -- 
-      {'hrsh7th/cmp-buffer'},       -- Optional
-      {'hrsh7th/cmp-path'},         -- Optional
-      {"hrsh7th/cmp-cmdline" },
-      {'saadparwaiz1/cmp_luasnip'}, -- Optional
+      { 'hrsh7th/nvim-cmp' },       -- Required
+      { 'hrsh7th/cmp-nvim-lsp' },   -- Required
+      { "hrsh7th/cmp-nvim-lua" },   --
+      { 'hrsh7th/cmp-buffer' },     -- Optional
+      { 'hrsh7th/cmp-path' },       -- Optional
+      { "hrsh7th/cmp-cmdline" },
+      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
 
       -- Snippets
-      {'L3MON4D3/LuaSnip'},             -- Required
-      {'rafamadriz/friendly-snippets'}, -- Optional
+      { 'L3MON4D3/LuaSnip' },           -- Required
+      { 'rafamadriz/friendly-snippets' }, -- Optional
     }
   }
 
   -- navigator: new LSP + view symbols etc
   --use {
-    --"ray-x/navigator.lua",
-    --requires = {
-      --{ 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
-      --{ 'neovim/nvim-lspconfig' },
-    --}
+  --"ray-x/navigator.lua",
+  --requires = {
+  --{ 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+  --{ 'neovim/nvim-lspconfig' },
   --}
-     --use { "hrsh7th/nvim-cmp" } -- completion plugin
-     --use { "hrsh7th/cmp-buffer" } -- buffer completions?
-     --use { "hrsh7th/cmp-path" } -- path completions
-     --use { "hrsh7th/cmp-cmdline" } -- command line completions
-     --use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
+  --}
+  --use { "hrsh7th/nvim-cmp" } -- completion plugin
+  --use { "hrsh7th/cmp-buffer" } -- buffer completions?
+  --use { "hrsh7th/cmp-path" } -- path completions
+  --use { "hrsh7th/cmp-cmdline" } -- command line completions
+  --use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
 
-    --use { "hrsh7th/cmp-nvim-lsp" }
-     --use { "hrsh7th/cmp-nvim-lua" }
+  --use { "hrsh7th/cmp-nvim-lsp" }
+  --use { "hrsh7th/cmp-nvim-lua" }
 
-     --use { "L3MON4D3/LuaSnip" } -- snippet engine
-     --use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
+  --use { "L3MON4D3/LuaSnip" } -- snippet engine
+  --use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
-    --use { "neovim/nvim-lspconfig" }
-     --use { "williamboman/mason.nvim" }
-     --use { "williamboman/mason-lspconfig.nvim" }
+  --use { "neovim/nvim-lspconfig" }
+  --use { "williamboman/mason.nvim" }
+  --use { "williamboman/mason-lspconfig.nvim" }
 
 
 
   -- null-ls needed for prettier
   use { "jose-elias-alvarez/null-ls.nvim" }
+  -- use { "fsouza/prettierd" }
   use { "MunifTanjim/prettier.nvim" }
 
   -- transparent background
   use { "xiyaowong/nvim-transparent" }
+
+  use { "ludovicchabant/vim-gutentags" }
 
 
   -- ~~~~~~~~~~~~~~~~~~~~~~
@@ -171,8 +190,6 @@ return packer.startup(function(use)
   -- surrounding " { [ ( etc commands
   use { "tpope/vim-surround" }
 
-  -- auto pairs e.g. "" {} []
-  use { "jiangmiao/auto-pairs" }
 
   -- NERD Commenter easy comments
   -- <leader>cs===fancy comment;
@@ -209,11 +226,11 @@ return packer.startup(function(use)
   -- ~~~~~~~~~~~~~~~~~~~~~~
   --
   --use "catppuccin/nvim"
-  use "olimorris/onedarkpro.nvim" -- pretty nice!
+  use "olimorris/onedarkpro.nvim"       -- pretty nice!
   use "gnmearacaun/onedarkcomment.nvim" -- onedark with brighter comments
 
   -- dracula themes
-  --use "dracula/vim" -- brighter than onedarkpro and pretty nice
+  use "dracula/vim" -- brighter than onedarkpro and pretty nice
 
   use "pacokwon/onedarkhc.vim"
 
@@ -236,7 +253,7 @@ return packer.startup(function(use)
   -- colors hex, rgb, etc as the actual color
   use "chrisbra/colorizer"
 
-  -- create an undo tree for easy changing and undoing 
+  -- create an undo tree for easy changing and undoing
   use "mbbill/undotree"
 
 
@@ -256,8 +273,8 @@ return packer.startup(function(use)
   -- AI co-pilot
   use {
     "Exafunction/codeium.vim",
-    config = function ()
-      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, {expr = true})
+    config = function()
+      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
     end
   }
 

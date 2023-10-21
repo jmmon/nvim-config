@@ -24,22 +24,19 @@ end
 lsp.preset('recommended')
 
 lsp.ensure_installed({
-  --"sumneko",
-  'eslint',
-  "lua_ls",
-  'eslint',
-  "cssls", -- original
-  --"html", -- original
-  "emmet_ls",
+  "html",     -- original
+  "cssls",    -- original
   "tsserver", -- original
-  "tailwindcss",
+
+  "emmet_ls",
+  'eslint',
+
   "cssmodules_ls",
+  "tailwindcss",
   "prismals",
-  --"jsonls", -- original
-  -- "pyright", -- original
-  -- "bashls", -- original
-  -- "yamlls", -- original
-  -- "python", -- original
+  "jsonls",
+
+  "lua_ls",
   "solidity",
   "arduino_language_server",
 })
@@ -64,17 +61,18 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 -- completion plugin mappings
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select), -- move up (in cmp menu)
-  ["<C-j>"] = cmp.mapping.select_next_item(cmp_select), -- move down 
+  ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),               -- move up (in cmp menu)
+  ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),               -- move down
 
   ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }), -- scroll docs back
-  ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }), -- scroll docs forward
+  ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),  -- scroll docs forward
 
-  ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }), -- 
+  ["<C-s>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c", "n" }), --
   ["<C-e>"] = cmp.mapping {
     i = cmp.mapping.abort(),
     c = cmp.mapping.close(),
   },
+
   ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
   --["<Tab>"] = cmp.mapping(function(fallback) -- better tab
@@ -108,6 +106,25 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+
 lsp.set_preferences({
   sign_icons = {}
 })
@@ -134,6 +151,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts) -- or <F2>
 
   vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+  -- vim.keymap.set("n", "<leader>o", function() cmp.mapping.complete() end, opts)
 end)
 
 
@@ -192,7 +211,7 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, {
     -- define the signs for diagnostics
     --text = sign.text,
-    text = "", -- symbol to show in the sign column (none)
+    text = "",          -- symbol to show in the sign column (none)
     texthl = sign.name, -- highlight the text causing the error
     numhl = sign.name,  -- highlight the linenumber causing the error
     linehl = sign.linehl,
@@ -203,14 +222,15 @@ end
 local config = {
   --virtual_text = true,
   virtual_text = {
-    source = "if_many",
+    -- source = "if_many",
+    source = true,
     --spacing = 4,
     --format = function(diagnostic)
-      --if diagnostic.severity == vim.diagnostic.severity.ERROR then
-        ----return " " .. diagnostic.message
-        --return string.format("E: %s", diagnostic.message)
-      --end
-      --return diagnostic.message
+    --if diagnostic.severity == vim.diagnostic.severity.ERROR then
+    ----return " " .. diagnostic.message
+    --return string.format("E: %s", diagnostic.message)
+    --end
+    --return diagnostic.message
     --end
   },
   signs = {

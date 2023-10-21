@@ -16,7 +16,7 @@ cmp.event:on(
 )
 --  ==================================================
 
-local npairs_status_ok, npairs = pcall(require, "nvim-autopairs")
+--[[ local npairs_status_ok, npairs = pcall(require, "nvim-autopairs")
 if not npairs_status_ok then
   return
 end
@@ -34,9 +34,9 @@ npairs.setup({
     --java = false, -- don't check treesitter on java
   },
   --enable_check_bracket_line = false,
-})
+})  ]]
 
-local ts_conds_status_ok, ts_conds = pcall(require, "nvim-autopairs.ts-conds")
+--[[ local ts_conds_status_ok, ts_conds = pcall(require, "nvim-autopairs.ts-conds")
 if not ts_conds_status_ok then
   return
 end
@@ -46,4 +46,4 @@ npairs.add_rules({
     :with_pair(ts_cond.is_ts_node({'string', 'comment'})),
   Rule("$", "$", "lua")
     :with_pair(ts_conds.is_not_ts_node({'function'})),
-})
+}) ]]

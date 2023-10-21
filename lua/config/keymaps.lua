@@ -52,13 +52,17 @@ keymap("v", "<S-k>", ":move '<-2<cr>gv=gv", opts)
 -- navigate between buffers
 keymap("n", "<S-l>", ":bnext<cr>", opts)
 keymap("n", "<S-h>", ":bprevious<cr>", opts)
+keymap("n", "<leader>bf", "<cmd>bfirst<CR>", opts)
+keymap("n", "<leader>bl", "<cmd>blast<CR>", opts)
 
--- delete this buffer - doesn't work??
-keymap("n", "<leader>bd", "<cmd>bprevious<bar>bdelete#<CR><CR>", opts)
--- close all other buffers
-keymap("n", "<leader>bda", "<cmd>%bd<bar>e<CR><CR>", opts)
-keymap("n", "<leader>bdf", "<cmd>bdfirst<CR>", opts)
-keymap("n", "<leader>bdl", "<cmd>bdlast<CR>", opts)
+-- delete this buffer
+-- 2x CR: to run command, and to skip the confirmation dialog
+keymap("n", "<leader>bd", "<cmd>bprevious|bdelete#<CR><CR>", opts)
+-- close all buffers
+keymap("n", "<leader>bda", "<cmd>%bd|e<CR><CR>", opts)
+-- close OTHER buffers
+-- close all buffers, (creates No Name) open last buffer, delete last buffer (the No Name)
+keymap("n", "<leader>bdo", "<cmd>%bd|e#|bd#<CR><CR>\'\"", opts)
 
 -- marks?
 keymap("n", "<leader>mda", "<cmd>delm a<CR>", opts)
@@ -108,6 +112,13 @@ keymap("n", "<leader>ft", ":Telescope live_grep<cr>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<cr>", opts)
 keymap("n", "<leader>fd", ":Telescope diagnostics<cr>", opts)
 
+-- fzf_lua -- linux only!
+-- keymap("n", "<leader>ff",":FzfLua files<CR>", opts)
+-- keymap("n", "<leader>ft",":FzfLua live_grep<CR>", opts)
+-- keymap("n", "<leader>fb",":FzfLua buffers<CR>", opts)
+-- keymap("n", "<leader>fd",":FzfLua lsp_finder<CR>", opts)
+-- keymap("n", "<leader>fr",":FzfLua lsp_references<CR>", opts)
+
 -- lsp format!
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 -- prettier format
@@ -134,3 +145,8 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 vim.keymap.set("n", "[c", function()
   require("treesitter-context").go_to_context()
 end, { silent = true })
+
+-- keymap("n", "<leader>mc", "<cmd>:MinimapClose<CR><CR>", opts)
+-- keymap("n", "<leader>mo", "<cmd>:Minimap<CR><CR>", opts)
+-- keymap("n", "<leader>mm", "<cmd>:MinimapToggle<CR><CR>", opts)
+--

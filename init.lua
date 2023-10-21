@@ -3,38 +3,38 @@ require "config.globals"
 require "config.options"
 require "config.keymaps"
 require "config.plugins"
+require "config.plugin-settings.transparent" -- bg
 
-require "config.colorscheme" -- does setup and sets colorscheme
-require "config.lualine" -- status line, shows buffers etc
+require "config.plugin-settings.colorscheme" -- does setup and sets colorscheme
+require "config.plugin-settings.lualine" -- status line, shows buffers etc
 
-require "config.telescope" -- for find file, find text
-require "config.treesitter" -- syntax highlighting
-require "config.web-devicons" -- set up custom icons
-require "config.nvim_tree" -- file browser side window
+require "config.plugin-settings.telescope" -- for find file, find text
+require "config.plugin-settings.treesitter" -- syntax highlighting
+require "config.plugin-settings.web-devicons" -- set up custom icons
+require "config.plugin-settings.nvim_tree" -- file browser side window
 
 -- navigator LSP 
---require "config.navigator" -- new LSP + func definitions etc
+--require "config.plugin-settings.navigator" -- new LSP + func definitions etc
 
 -- new lsp
-require "config.lsp_zero" -- includes emmet_ls!
+require "config.plugin-settings.lsp_zero" -- includes emmet_ls!
 
  -- old lsp
---require "config.cmp_old"
---require "config.lsp_old" 
+--require "config.plugin-settings.cmp_old"
+--require "config.plugin-settings.lsp_old" 
 
-require "config.which-key" -- pop up key combinations
+require "config.plugin-settings.which-key" -- pop up key combinations
 
 -- prettier formatting :Prettier or <leader>lff?
-require "config.null-ls"
-require "config.prettier"
+require "config.plugin-settings.null-ls"
+require "config.plugin-settings.prettier"
 
 -- toggleterm and lazygit terminal functions and hotkeys
-require "config.toggleterm"
-require "config.illuminate" -- highlight occurrances
-require "config.autopairs" -- might cause cmp suggestions to break!
+require "config.plugin-settings.toggleterm"
+require "config.plugin-settings.illuminate" -- highlight occurrances
+-- require "config.plugin-settings.autopairs" -- might cause cmp suggestions to break!
 
-require "config.comment" -- comment.nvim config
+require "config.plugin-settings.comment" -- comment.nvim config
 
---require "config.indent-blankline" -- indent colors
---require "config.transparent" -- bg
+--require "config.plugin-settings.indent-blankline" -- indent colors
 

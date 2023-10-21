@@ -64,6 +64,7 @@ local options = {
 
   backup = false,
   undofile = true,
+  -- this only works in the terminal! require os doesn't work in neovim?
   undodir = os.getenv('HOME') .. "/.vim/undodir",
   writebackup = false,
 
@@ -77,6 +78,9 @@ local options = {
   equalalways = false, -- when splitting window, don't equalize the sizes every time
   -- winminheight = 3,
 }
+
+vim.cmd [[ set path+=** ]]
+vim.cmd [[ set wildmenu ]]
 
 
 -- apply the options

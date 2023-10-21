@@ -63,6 +63,7 @@ if not tt_term_status_ok then
   return
 end
 
+-- For lazy git
 local Terminal = toggleterm_term.Terminal
 
 local lazygit = Terminal:new({
@@ -88,6 +89,8 @@ end
 
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", opts)
 
+
+-- other terminal keybinds
 local node = Terminal:new({ cmd = "node", hidden = true })
 
 function _node_toggle()
@@ -104,6 +107,36 @@ end
 
 vim.api.nvim_set_keymap("n", "<leader>tp", "<cmd>lua _python_toggle()<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", opts)
+vim.cmd [[
+  autocmd TermEnter term://*toggleterm#*
+    \ tnoremap <silent><c-/> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+
+  nnoremap <silent><c-/> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+]]
+--
+  -- inoremap <silent><c-/> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
+
+vim.cmd [[
+  autocmd TermEnter term://*toggleterm#*
+    \ tnoremap <silent><leader>b <Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>
+
+  nnoremap <silent><leader>b <Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>
+]]
+
+vim.cmd [[
+  autocmd TermEnter term://*toggleterm#*
+    \ tnoremap <silent><leader>v <Cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>
+
+  nnoremap <silent><leader>v <Cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>
+]]
+
+vim.cmd [[
+  autocmd TermEnter term://*toggleterm#*
+    \ tnoremap <silent><leader>f <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>
+
+  nnoremap <silent><leader>f <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>
+]]
+
+-- vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", opts)

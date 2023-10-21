@@ -3,6 +3,7 @@ if not  icons_status_ok then
   return
 end
 
+-- fixes occasional black rows due to unrecognized file extension
 icons.setup {
  override_by_extension = {
   ["log"] = {
@@ -31,6 +32,17 @@ icons.setup {
     color = "#FFA500",
     name = "XML"
   },
+
+  ["docx"] = {
+    icon = "",
+    color = "#ddddff",
+    name = "DocX"
+  },
+  ["xlsx"] = {
+    icon = "",
+    color = "#ffff44",
+    name = "ExcelSpreadshet"
+  },
   ["sol"] = {
     --icon = "",
     --icon = "",
@@ -38,5 +50,10 @@ icons.setup {
     color = "#9988aa",
     name = "Solidity"
   },
+  ["prisma"] = {
+    icon = "",
+    color = "#aaaaaa",
+    name = "Prisma"
+    },
  };
 }
