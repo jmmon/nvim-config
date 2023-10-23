@@ -280,6 +280,17 @@ lspconfig.emmet_ls.setup({
   }
 })
 
+
+local MY_FQBN = "arduino:avr:nano"
+lspconfig.arduino_language_server.setup {
+    cmd = {
+        "arduino-language-server",
+        "-cli-config", "C:/Users/jmmon/AppData/Local/Arduino15/arduino-cli.yaml",
+        "-fqbn",
+        MY_FQBN
+    }
+}
+
 lsp.skip_server_setup({ 'eslint' })
 
 -- lastly: run the setup
