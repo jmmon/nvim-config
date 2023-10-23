@@ -146,6 +146,10 @@ vim.keymap.set("n", "[c", function()
   require("treesitter-context").go_to_context()
 end, { silent = true })
 
+
+keymap("n", "<leader>ts", "<cmd>:TailwindSort<cr><cr>", opts)
+keymap("n", "<leader>tss", "<cmd>:TailwindSortOnSaveToggle<cr><cr>", opts)
+
 -- keymap("n", "<leader>mc", "<cmd>:MinimapClose<CR><CR>", opts)
 -- keymap("n", "<leader>mo", "<cmd>:Minimap<CR><CR>", opts)
 -- keymap("n", "<leader>mm", "<cmd>:MinimapToggle<CR><CR>", opts)

@@ -126,20 +126,20 @@ return packer.startup(function(use)
         run = function()
           pcall(vim.cmd, 'MasonUpdate')
         end,
-      },                                     -- Optional
+      },                                       -- Optional
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },       -- Required
-      { 'hrsh7th/cmp-nvim-lsp' },   -- Required
-      { "hrsh7th/cmp-nvim-lua" },   --
-      { 'hrsh7th/cmp-buffer' },     -- Optional
-      { 'hrsh7th/cmp-path' },       -- Optional
+      { 'hrsh7th/nvim-cmp' },         -- Required
+      { 'hrsh7th/cmp-nvim-lsp' },     -- Required
+      { "hrsh7th/cmp-nvim-lua" },     --
+      { 'hrsh7th/cmp-buffer' },       -- Optional
+      { 'hrsh7th/cmp-path' },         -- Optional
       { "hrsh7th/cmp-cmdline" },
       { 'saadparwaiz1/cmp_luasnip' }, -- Optional
 
       -- Snippets
-      { 'L3MON4D3/LuaSnip' },           -- Required
+      { 'L3MON4D3/LuaSnip' },             -- Required
       { 'rafamadriz/friendly-snippets' }, -- Optional
     }
   }
@@ -276,6 +276,13 @@ return packer.startup(function(use)
     config = function()
       vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
     end
+  }
+
+  use {
+    'laytan/tailwind-sorter.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
+    config = function() require('tailwind-sorter').setup() end,
+    run = 'cd formatter && npm i && npm run build',
   }
 
   --use "jackMort/ChatGPT.nvim"
