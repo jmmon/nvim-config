@@ -21,7 +21,21 @@ end
 toggleterm.setup({
   size = function(term)
     if term.direction == "horizontal" then
-      return 15
+      local min_lines = 6
+      local max_lines = 20
+      local window_height = vim.api.nvim_win_get_height(0)
+      -- local buffer_height = vim.api.nvim_buf_line_count(0)
+      -- local window_height = vim.api.winheight('%')
+      local desired_percent = 0.2
+local percent = desired_percent * 2 -- for some reason we have to multiply by 2
+      return math.min(
+        max_lines,
+        math.max(
+          min_lines,
+          (window_height * percent)
+          -- (buffer_height * percent)
+        )
+      )
     elseif term.direction == "vertical" then
       return 15 + (vim.o.columns * 0.40)
     end
@@ -38,7 +52,7 @@ toggleterm.setup({
   persist_size = true,
   persist_mode = true,
   direction = "horizontal", -- | "vertical" | "float"
-  close_on_exit = false, -- when process exists, close terminal
+  close_on_exit = false,    -- when process exists, close terminal
   shell = vim.o.shell,
   auto_scroll = true,
   float_opts = {
@@ -114,7 +128,7 @@ vim.cmd [[
   nnoremap <silent><c-/> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 ]]
 --
-  -- inoremap <silent><c-/> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
+-- inoremap <silent><c-/> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
 
 vim.cmd [[
   autocmd TermEnter term://*toggleterm#*
