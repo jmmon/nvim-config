@@ -32,6 +32,8 @@ local globals = {
   -- minimap_git_colors = 0, -- show git colors; default 0
 
   codeium_no_map_tab = 1, -- disable default bindings 
+
+  -- c_syntax_for_h = 1, -- use c syntax for h files, rather than cpp
 }
 
 vim.cmd [[
