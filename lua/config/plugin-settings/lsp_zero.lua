@@ -39,6 +39,7 @@ lsp.ensure_installed({
   "lua_ls",
   "solidity",
   "arduino_language_server",
+  "cpp",
 })
 
 local cmp_status_ok, cmp = pcall(require, 'cmp')

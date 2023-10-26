@@ -35,6 +35,7 @@ configs.setup {
     -- 'rescript', 
     'scss', 'svelte', 'tsx', 'twig',
     'vim', 'vue',
+'arduino', 'cpp',
   },
   --ignore_install = {
     --""

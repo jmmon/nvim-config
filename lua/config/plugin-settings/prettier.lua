@@ -40,6 +40,10 @@ prettier.setup({
     "javascriptreact",
     "typescript",
     "typescriptreact",
+"arduino",
+"ino",
+"h",
+"cpp"
   },
 
   ["null-ls"] = {
