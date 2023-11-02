@@ -14,7 +14,7 @@ local options = {
   -- improve some drawing/redrawing:
   lazyredraw = true, -- should help with laggy scrolling
 
-  --syntax = "on",
+  -- syntax = "on",
   syntax = "off",
   --synmaxcol = 500, -- stop syntax highlighting after N columns
   -- redraw - when over this limit, syntax is DISABLED until Ctrl-L is pressed
@@ -75,6 +75,7 @@ local options = {
 
 
   background = "dark", -- dark or light
+
   equalalways = false, -- when splitting window, don't equalize the sizes every time
   -- winminheight = 3,
 }
@@ -89,7 +90,7 @@ for k, v in pairs(options) do
 end
 
 vim.opt.shortmess:append "c"
-vim.opt.iskeyword:append "-"
+-- vim.opt.iskeyword:append "-"
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles")
 
@@ -104,7 +105,7 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles")
 
 -- make cursor line only underline instead of highlight
 vim.cmd [[ autocmd VimEnter * :hi clear CursorLine ]]
-vim.cmd [[ autocmd VimEnter * :hi CursorLine  cterm=underline gui=underline guibg=#111111 ]]
+vim.cmd [[ autocmd VimEnter * :hi CursorLine cterm=underline gui=underline guibg=#111111 ]]
 --vim.cmd [[ autocmd VimEnter * :hi CursorLine  cterm=underline ctermfg=000000 gui=underline guifg=#000000 guibg=#111111 ]]
 
 -- line number && cursor line highlights
@@ -114,3 +115,4 @@ vim.cmd [[ autocmd VimEnter * :hi CursorLineNr guifg=#F55FFE guibg=#444444 ]]
 
 -- treesitter context - bottom row highlight, acting as a separator
 vim.cmd [[ autocmd VimEnter * :hi TreesitterContextBottom gui=underline guisp=Grey ]]
+

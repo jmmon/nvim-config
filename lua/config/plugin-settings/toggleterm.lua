@@ -20,6 +20,7 @@ end
 
 toggleterm.setup({
   size = function(term)
+    -- Horizontal termials:
     if term.direction == "horizontal" then
       local min_lines = 6
       local max_lines = 20
@@ -27,7 +28,7 @@ toggleterm.setup({
       -- local buffer_height = vim.api.nvim_buf_line_count(0)
       -- local window_height = vim.api.winheight('%')
       local desired_percent = 0.2
-local percent = desired_percent * 2 -- for some reason we have to multiply by 2
+      local percent = desired_percent * 2 -- for some reason we have to multiply by 2
       return math.min(
         max_lines,
         math.max(
@@ -36,8 +37,9 @@ local percent = desired_percent * 2 -- for some reason we have to multiply by 2
           -- (buffer_height * percent)
         )
       )
+    -- Vertical termials:
     elseif term.direction == "vertical" then
-      return 15 + (vim.o.columns * 0.40)
+      return 15 + (vim.o.columns * 0.30)
     end
   end,
   open_mapping = [[<c-\>]],
@@ -104,22 +106,22 @@ end
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", opts)
 
 
--- other terminal keybinds
-local node = Terminal:new({ cmd = "node", hidden = true })
-
-function _node_toggle()
-  node:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<leader>tn", "<cmd>lua _node_toggle()<CR>", opts)
-
-local python = Terminal:new({ cmd = "python3", hidden = true })
-
-function _python_toggle()
-  python:toggle()
-end
-
-vim.api.nvim_set_keymap("n", "<leader>tp", "<cmd>lua _python_toggle()<CR>", opts)
+-- -- other terminal keybinds
+-- local node = Terminal:new({ cmd = "node", hidden = true })
+--
+-- function _node_toggle()
+--   node:toggle()
+-- end
+--
+-- vim.api.nvim_set_keymap("n", "<leader>tn", "<cmd>lua _node_toggle()<CR>", opts)
+--
+-- local python = Terminal:new({ cmd = "python3", hidden = true })
+--
+-- function _python_toggle()
+--   python:toggle()
+-- end
+--
+-- vim.api.nvim_set_keymap("n", "<leader>tp", "<cmd>lua _python_toggle()<CR>", opts)
 
 vim.cmd [[
   autocmd TermEnter term://*toggleterm#*

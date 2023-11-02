@@ -39,7 +39,6 @@ lsp.ensure_installed({
   "lua_ls",
   "solidity",
   "arduino_language_server",
-  "cpp",
 })
 
 local cmp_status_ok, cmp = pcall(require, 'cmp')
@@ -208,6 +207,7 @@ local signs = {
   },
 }
 
+-- adefine signs from the list
 for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, {
     -- define the signs for diagnostics

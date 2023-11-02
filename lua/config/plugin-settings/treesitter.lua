@@ -1,8 +1,3 @@
---local ts_status_ok, treesitter = pcall(require, "nvim-treesitter")
---if not ts_status_ok then
-  --return
---end
-
 local configs_status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not configs_status_ok then
   return
@@ -27,15 +22,16 @@ configs.setup {
     ----"comment",
   --},
   ensure_installed = {
-    'astro', 'css', 'glimmer', 'graphql',
+    'markdown',
+    'css', 'glimmer', 'graphql',
     -- 'handlebars', 
     -- 'hbs',
     'html', 'javascript', 'typescript',
     'lua', 'nix', 'php', 'python',
     -- 'rescript', 
     'scss', 'svelte', 'tsx', 'twig',
-    'vim', 'vue',
-'arduino', 'cpp',
+    'vim',
+    'arduino', 'cpp',
   },
   --ignore_install = {
     --""
@@ -83,3 +79,67 @@ configs.setup {
     enable = true,
   },
 }
+
+-- set up treesitter folding
+local set = vim.opt
+set.foldmethod = 'expr'
+set.foldexpr = 'nvim_treesitter#foldexpr()'
+
+vim.cmd [[ autocmd FileType * exe "normal zR" ]]
+-- vim.cmd [[
+-- set foldmethod=expr
+-- set foldexpr=nvim_treesitter#foldexpr()
+-- set nofoldenable                     " Disable folding at startup. 
+-- ]]
+--
+-- use treesitter for folding
+-- local vim = vim
+-- local opt = vim.opt
+--
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- open all folds on startup
+-- vim.cmd [[ autocmd BufReadPost,FileReadPost * normal zR ]]
+    -- {"BufReadPost,FileReadPost", "*", "normal zR"}
+
+-- -- treesitter folds: default to open
+-- local vim = vim
+-- local api = vim.api
+-- local M = {}
+--
+-- -- fn to create list of cmds and convert to autocommands
+-- -------- This function is taken from https://github.com/norcalli/nvim_utils
+-- function M.nvim_create_augroups(definitions)
+--   for group_name, definition in pairs(definitions) do
+--     api.nvim_command('augroup '..group_name)
+--     api.nvim_command('autocmd!')
+--     for _, def in ipairs(definitions) do
+--       local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+--       api.nvim_command(command)
+--     end
+--     api.nvim_command('augroup END')
+--   end
+-- end
+--
+-- local autoCommands = {
+--   --other autocommands
+--   open_folds = {
+--     {"BufReadPost,FileReadPost", "*", "normal zR"}
+--   },
+--   highlight_modifications = {
+--     -- cursor line: underline only, rather than highlight
+--     {"VimEnter", "*", ":hi clear Cursorline"},
+--     {"VimEnter", "*", ":hi Cursorline cterm=underline gui=underline guibg=#111111"},
+--
+--     -- line number &7 cursor line highlights
+--     {"VimEnter", "*", ":hi LineNr guifg=#777777"},
+--     {"VimEnter", "*", ":hi CursorlineNr guifg=#f55ffe guibg=#444444"},
+--
+--     -- treesitter context: bottom row highlight, acting as a separator
+--     {"VimEnter", "*", ":hi TreesitterContextBottom gui=underline guisp=Grey"},
+--   },
+-- }
+--
+-- M.nvim_create_augroups(autoCommands)
+

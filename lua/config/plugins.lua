@@ -7,6 +7,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
+
 -- autocommand to reload nvim whenever you save plugins.lua file
 vim.cmd [[
     augroup packer_user_config
@@ -119,8 +120,7 @@ return packer.startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     requires = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' }, -- Required
+      -- allows managing LSP servers from neovim (:Mason)
       {
         'williamboman/mason.nvim',
         run = function()
@@ -128,6 +128,9 @@ return packer.startup(function(use)
         end,
       },                                       -- Optional
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' }, -- Required
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },         -- Required
@@ -178,7 +181,7 @@ return packer.startup(function(use)
   -- transparent background
   use { "xiyaowong/nvim-transparent" }
 
-  use { "ludovicchabant/vim-gutentags" }
+  -- use { "ludovicchabant/vim-gutentags" }
 
 
   -- ~~~~~~~~~~~~~~~~~~~~~~

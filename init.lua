@@ -18,6 +18,7 @@ require "config.plugin-settings.nvim_tree" -- file browser side window
 
 -- new lsp
 require "config.plugin-settings.lsp_zero" -- includes emmet_ls!
+-- require "config.plugin-settings.lsp_zero_3"
 
  -- old lsp
 --require "config.plugin-settings.cmp_old"
